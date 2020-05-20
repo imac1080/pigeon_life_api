@@ -29,9 +29,13 @@ module.exports = function(app, db) {
         console.log(req.body.username);
         db.collection('usuarios').findOne({ username: req.body.username}).then(result => {
             if(result!=null){
-                res.send(result.password);
+                if(req.body.password==result.password){
+                    res.send("ok");
+                }    else{
+                    res.send("no");
+                }            
             }else{
-                res.send(null);
+                res.send("null");
             }
         })
     });
