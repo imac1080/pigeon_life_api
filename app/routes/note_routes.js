@@ -27,7 +27,11 @@ module.exports = function(app, db) {
     app.post("/getUser",  async (req, res) => {
         console.log(req.body.username);
         db.collection('usuarios').findOne({ username: req.body.username}).then(result => {
-            res.send(true);
+            if(result!=null){
+                res.send(true);
+            }else{                
+                res.send(false);
+            }
         })
     });
     
