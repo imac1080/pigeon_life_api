@@ -10,6 +10,7 @@ const port = process.env.PORT || 8000;
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 
 MongoClient.connect(process.env.DB_URL, (err, database) => {
 	const myAwesomeDB = database.db('RankingDB')
