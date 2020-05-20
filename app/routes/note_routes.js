@@ -54,6 +54,13 @@ module.exports = function(app, db) {
         })
     });
 
+    app.post("/InsertRanking", async (req, res) => {        
+		const user = {'username': req.body.username,'ranking':req.body.ranking };
+        db.collection('RankingCollection').insert(user, (err, result) => {
+			res.send("insert ranking ok");
+		});
+    });
+
     app.get("/Ranking",  async (req, res) => {        
         var mysort = { ranking: -1 };
         db.collection('RankingCollection').find({}).sort(mysort).toArray(function(err, result) {
